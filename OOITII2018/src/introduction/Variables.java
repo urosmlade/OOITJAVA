@@ -76,7 +76,7 @@ public class Variables {
 		
 		System.out.println("Pomocu for neparne brojeve od 1 do 10");
 		for (i = 1; i <= 10; i++) {
-			if (i % 2 != 0) {
+			if (i % 2 == 0) {
 				// break;
 				continue;
 			}
