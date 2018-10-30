@@ -29,7 +29,7 @@ public class Point {
 		this.y = y;
 	}
 	
-	public boolean getSelected() {
+	public boolean isSelected() {
 		return this.selected;
 	}
 	
