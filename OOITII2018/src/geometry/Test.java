@@ -41,6 +41,9 @@ public class Test {
 		// 6. Postaviti x koordinatu tacke gore levo pravougaonika
 		// r1 na vrednost 10 i y koordinatu na vrednost 15
 		
+		Rectangle r1 = new Rectangle();
+		r1.setUpperLeftPoint(p);
+		
 		// 7. Postaviti centar kruga c1 na koordinate tacke 
 		// gore levo od r1
 		
