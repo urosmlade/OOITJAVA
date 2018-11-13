@@ -20,6 +20,18 @@ public class Circle {
 		setSelected(selected);
 	}
 	
+	public boolean contains(int x, int y) {
+		return this.getCenter().distance(x, y) <= radius;
+	}
+	
+	public boolean contains(Point p) {
+		if (p.distance(getCenter().getX(), getCenter().getY()) <= radius ) {
+			return true;
+		} else {	
+			return false;
+		}
+	}
+	
 	public boolean equals (Object obj) {
 		if (obj instanceof Circle) {
 			Circle c = (Circle) obj;

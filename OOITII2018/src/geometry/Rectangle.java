@@ -22,6 +22,28 @@ public class Rectangle {
 		this.selected = selected;
 	}
 	
+	public boolean contains(int x, int y) {
+		if (this.getUpperLeftPoint().getX() <= x
+				&& x <= (this.getUpperLeftPoint().getX() + width)
+				&& this.getUpperLeftPoint().getY() <= y
+				&& y <= (this.getUpperLeftPoint().getY() + height)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
+	public boolean contains(Point p) {
+		if (this.getUpperLeftPoint().getX() <= p.getX()
+				&& p.getX() <= (this.getUpperLeftPoint().getX() + width)
+				&& this.getUpperLeftPoint().getY() < p.getY()
+				&& p.getY() <= (this.getUpperLeftPoint().getY() + height)) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+	
 	public boolean equals (Object obj) {
 		if (obj instanceof Rectangle) {
 			Rectangle r = (Rectangle) obj;

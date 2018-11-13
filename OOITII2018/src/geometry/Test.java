@@ -128,6 +128,29 @@ public class Test {
 			}
 		}
 		
+		System.out.println(r1.contains(p1));
+		System.out.println(r1.contains(15, 25));
+		
+		Donut d = new Donut(new Point(20, 20),  5, 3);
+		System.out.println(d.toString());
+		
+		Donut d1 = new Donut(p, 10, 7);
+		System.out.println(d1);
+		
+		System.out.println(d.contains(5, 8));
+		
+		c1.getCenter().setX(5);
+		c1.getCenter().setY(5);
+		c1.setRadius(2);
+		System.out.println(c1.contains(3, 4));
+		
+		System.out.println(d instanceof Donut);
+		System.out.println(d instanceof Object);
+		System.out.println(d instanceof Circle);
+		
+		System.out.println(c1 instanceof Donut);
+		
+		System.out.println(d.equals(d1));
 	}
 
 }
