@@ -13,7 +13,7 @@ public class Line {
 	public Line(Point startPoint, Point endPoint) {
 		this.startPoint = startPoint;
 		setEndPoint(endPoint);
-	}
+	} 
 	
 	public Line(Point startPoint, Point endPoint, boolean selected) {
 		this(startPoint, endPoint);
@@ -21,7 +21,7 @@ public class Line {
 	}
 	
 	public boolean contains(int x, int y) {
-		if ((startPoint.distance(x, y) + endPoint.distance(x, y)) - length() <= 3 ) {
+		if ((startPoint.distance(x, y) + endPoint.distance(x, y)) - length() <= 0.05 ) {
 			return true;
 		} else {
 			return false;
