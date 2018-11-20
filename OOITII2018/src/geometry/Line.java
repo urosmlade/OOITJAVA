@@ -1,10 +1,12 @@
 package geometry;
 
-public class Line {
+import java.awt.Color;
+import java.awt.Graphics;
+
+public class Line extends Shape {
 
 	private Point startPoint;
 	private Point endPoint;
-	private boolean selected;
 	
 	public Line() {
 		
@@ -17,7 +19,29 @@ public class Line {
 	
 	public Line(Point startPoint, Point endPoint, boolean selected) {
 		this(startPoint, endPoint);
-		this.selected = selected;
+		setSelected(selected);
+	}
+	
+
+	@Override
+	public void draw(Graphics g) {
+		g.drawLine(this.getStartPoint().getX(), this.getStartPoint().getY(), this.getEndPoint().getX(), this.getEndPoint().getY());
+		
+		if (isSelected()) {
+			g.setColor(Color.BLUE);
+			g.drawRect(this.getStartPoint().getX() - 3, this.getStartPoint().getY() - 3, 6, 6);
+			g.drawRect(this.getEndPoint().getX() - 3, this.getEndPoint().getY() - 3, 6, 6);
+			// middleOfLine().draw(g); --> ovo je kada bi zeleli da nacrtamo i samu tacku na sredini linije
+			g.drawRect(this.middleOfLine().getX() - 3, this.middleOfLine().getY() - 3, 6, 6); // nama treba samo kvadratic na sredini ako je linija selektovana
+		}
+		
+	}
+	
+	public Point middleOfLine() {
+		int middleByX = (this.getStartPoint().getX() + this.getEndPoint().getX()) / 2;
+		int middleByY = (this.getStartPoint().getY() + this.getEndPoint().getY()) / 2;
+		Point p = new Point(middleByX, middleByY);
+		return p;
 	}
 	
 	public boolean contains(int x, int y) {
@@ -58,16 +82,10 @@ public class Line {
 	public void setEndPoint(Point endPoint) {
 		this.endPoint = endPoint;
 	}
-	public boolean isSelected() {
-		return selected;
-	}
-	public void setSelected(boolean selected) {
-		this.selected = selected;
-	}
-	
 	public String toString() {
 		return startPoint + "-->" + endPoint;
 	}
+
 	
 	
 	
