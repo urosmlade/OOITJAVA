@@ -25,6 +25,13 @@ public class Donut extends Circle {
 		g.drawOval(this.getCenter().getX() - this.getInnerRadius(), this.getCenter().getY() - this.getInnerRadius(), this.getInnerRadius()*2, this.getInnerRadius()*2);
 	}
 	
+	public int compareTo(Object o) {
+		if (o instanceof Donut) {
+			return (int) (this.area() - ((Donut) o).area());
+		}
+		return 0;
+	}
+	
 	public boolean contains(int x, int y) {
 		double dFromDistance = this.getCenter().distance(x, y);
 		return super.contains(x, y) &&

@@ -36,6 +36,20 @@ public class Line extends Shape {
 		}
 		
 	}
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		this.startPoint.moveBy(byX, byY);
+		endPoint.moveBy(byX, byY);
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Line) {
+			return (int) (this.length() - ((Line) o).length());
+		}
+		return 0;
+	}
 	
 	public Point middleOfLine() {
 		int middleByX = (this.getStartPoint().getX() + this.getEndPoint().getX()) / 2;
@@ -85,6 +99,7 @@ public class Line extends Shape {
 	public String toString() {
 		return startPoint + "-->" + endPoint;
 	}
+
 
 	
 	

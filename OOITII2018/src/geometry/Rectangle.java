@@ -39,7 +39,21 @@ public class Rectangle extends Shape {
 		g.drawRect(this.getUpperLeftPoint().getX(), this.getUpperLeftPoint().getY(), this.getWidth(), this.height);
 		
 	}
-	
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		upperLeftPoint.moveBy(byX, byY);
+		
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Rectangle) {
+			return (int) (this.area() - ((Rectangle) o).area());
+		}
+		return 0;
+	}
+
 	public boolean contains(Point p) {
 		if (this.getUpperLeftPoint().getX() <= p.getX()
 				&& p.getX() <= (this.getUpperLeftPoint().getX() + width)

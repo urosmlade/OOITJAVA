@@ -3,6 +3,8 @@ package geometry;
 import java.awt.Color;
 import java.awt.Graphics;
 
+import javax.xml.stream.events.StartDocument;
+
 public class Point extends Shape {
 
 	private int x;
@@ -32,7 +34,22 @@ public class Point extends Shape {
 			g.drawRect(this.x-3, this.y-3, 6, 6);
 		}
 	}
-	
+
+	@Override
+	public void moveBy(int byX, int byY) {
+		this.x = this.x + byX;
+		this.y += byY;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		if (o instanceof Point) {
+			Point start = new Point(0, 0);
+			return (int) (this.distance(start.getX(), start.getY()) - ((Point) o).distance(start.getX(), start.getY()));
+		}
+		return 0;
+	}
+
 	public boolean contains(int x, int y) {
 		if (this.distance(x, y) <= 3 ) {
 			return true;
@@ -81,5 +98,6 @@ public class Point extends Shape {
 	public String toString() {
 		return "(" + x + ", " + y + ")";
 	}
+
 	
 }

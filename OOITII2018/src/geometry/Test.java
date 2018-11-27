@@ -1,10 +1,12 @@
 package geometry;
 
+import java.util.Arrays;
+
 public class Test {
 
 	public static void main(String[] args) {
 
-		Point p = new Point();
+		/*Point p = new Point();
 		p.setX(10);
 		p.setY(20);
 		//p.setSelected(true);
@@ -150,7 +152,40 @@ public class Test {
 		
 		System.out.println(c1 instanceof Donut);
 		
-		System.out.println(d.equals(d1));
+		System.out.println(d.equals(d1));*/
+		
+		Circle c1 = new Donut(new Point(10, 10), 5, 3);
+		Donut d = new Donut(new Point(20, 20), 20, 10);
+		
+		d.moveBy(10, 10);
+		System.out.println(d.toString());
+		
+		/*Point p = new Point(20, 20);
+		Point p1 = new Point(5, 3);
+		System.out.println(p.compareTo(p1));*/
+		
+		Point p1 = new Point(5, 5);
+		Point p2 = new Point(13, 13);
+		Point p3 = new Point(20, 20);
+		Point p4 = new Point(2, 2);
+		
+		Point[] arrayOfPoints = {p2, p1, p4, p3};
+		
+		System.out.println("Nesortiran niz tacaka");
+		for (int i = 0; i < arrayOfPoints.length; i++) {
+			System.out.println(arrayOfPoints[i]);
+		}
+		
+		Arrays.sort(arrayOfPoints);
+		
+		System.out.println("Sortiran niz tacaka");
+		for (int i = 0; i < arrayOfPoints.length; i++) {
+			System.out.println(arrayOfPoints[i]);
+		}
+		
+		String s1 = "1";
+		int broj = Integer.parseInt(s1);
+		System.out.println(broj);
 	}
 
 }
