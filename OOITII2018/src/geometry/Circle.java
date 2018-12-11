@@ -25,11 +25,18 @@ public class Circle extends Shape {
 	public void draw(Graphics g) {
 		g.drawOval(this.getCenter().getX() - this.getRadius(), this.getCenter().getY() - this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 		
+		if (isSelected()) {
+			g.drawRect(this.getCenter().getX() + getRadius() - 3, this.getCenter().getY()-3, 6, 6);
+			g.drawRect(this.getCenter().getX() - getRadius() - 3, this.getCenter().getY()-3, 6, 6);
+			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + getRadius() -3, 6, 6);
+			g.drawRect(this.getCenter().getX()  - 3, this.getCenter().getY() - getRadius() -3, 6, 6);
+			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - 3, 6, 6);
+		}
 	}
 
 	@Override
 	public void moveBy(int byX, int byY) {
-		center.moveBy(byX, byY);
+		 center.moveBy(byX, byY);
 		
 	}
 

@@ -22,10 +22,10 @@ public class Drawing extends JPanel {
 	public void paint(Graphics g) {
 		
 		Point p = new Point(150, 150, true);
-		// p.draw(g);
+		p.draw(g);
 		
 		Line l = new Line(new Point(600, 222), new Point(540, 22), true);
-		// l.draw(g);
+		l.draw(g);
 		
 		Circle c = new Circle(new Point(300, 380), 60, true);
 		// c.draw(g);
