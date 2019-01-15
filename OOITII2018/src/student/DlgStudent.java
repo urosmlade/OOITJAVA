@@ -19,6 +19,8 @@ import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JComboBox;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class DlgStudent extends JDialog {
 
@@ -72,6 +74,17 @@ public class DlgStudent extends JDialog {
 		cbxGodina.addItem("2016");
 		
 		JLabel lblBrojIndeksa = new JLabel("Broj indeksa:");
+		txtBrojIndeksa.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				char c = e.getKeyChar();
+				if (!((c >= '0') && (c <= '9') ||
+						(c == KeyEvent.VK_BACK_SPACE))) {
+					e.consume();
+					getToolkit().beep();
+				}
+			}
+		});
 		
 		txtBrojIndeksa.setColumns(10);
 		

@@ -87,6 +87,35 @@ public class FrmStudent extends JFrame {
 		});
 		
 		JButton btnModifikuj = new JButton("Modifikuj");
+		btnModifikuj.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				if (lstStudent.isSelectionEmpty()) {
+					JOptionPane.showMessageDialog(null,
+							"Nijedan red nije selektovan!", 
+							"Greška", 
+							JOptionPane.ERROR_MESSAGE);
+				} else {
+					DlgStudent dlgModifikacija = new DlgStudent();
+					String[] split = dlm.getElementAt(lstStudent.getSelectedIndex()).toString().split(" ");
+					dlgModifikacija.getTxtIme().setText(split[9]);
+					dlgModifikacija.getTxtPrezime().setText(split[7]);
+					dlgModifikacija.getTxtBrojIndeksa().setText(split[3]);
+					dlgModifikacija.getCbxSmer().setSelectedItem(split[2]);
+					dlgModifikacija.getCbxGodina().setSelectedItem(split[5]);
+					dlgModifikacija.setVisible(true);
+					
+					if (dlgModifikacija.isOk) {
+						dlm.removeElementAt(lstStudent.getSelectedIndex());
+						String s = "Broj indeksa: " + dlgModifikacija.getCbxSmer().getSelectedItem() +
+								" " + dlgModifikacija.getTxtBrojIndeksa().getText() + " / " + 
+								dlgModifikacija.getCbxGodina().getSelectedItem() + ", Prezime: " +
+								dlgModifikacija.getTxtPrezime().getText() + " Ime: " + dlgModifikacija.getTxtIme().getText();
+						dlm.add(lstStudent.getSelectedIndex(), s);
+					}
+					
+				}
+			}
+		});
 		GroupLayout gl_pnlZapad = new GroupLayout(pnlZapad);
 		gl_pnlZapad.setHorizontalGroup(
 			gl_pnlZapad.createParallelGroup(Alignment.LEADING)
