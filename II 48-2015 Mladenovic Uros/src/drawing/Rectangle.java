@@ -79,6 +79,8 @@ public class Rectangle extends Shapes {
 
 	@Override
 	public void draw(Graphics g) {
+		g.setColor(getBoja());
+		
 		g.drawRect(this.getUlp().getX(), this.getUlp().getY(), this.getWidth(), this.getHeight());
 		if(isSelected() == true) {
 			g.drawRect(this.getUlp().getX() - 3, this.getUlp().getY() - 3, 6, 6);

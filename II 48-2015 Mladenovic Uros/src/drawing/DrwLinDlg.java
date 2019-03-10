@@ -1,9 +1,11 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -35,6 +37,10 @@ public class DrwLinDlg extends JDialog {
 	private int sy;
 	private int ex;
 	private int ey;
+	private JButton btnPromenaBoja;
+	private Color boja = Color.BLACK;
+	private Color bojaTacke = Color.BLACK;
+	
 	
 	/**
 	 * Launch the application.
@@ -116,23 +122,33 @@ public class DrwLinDlg extends JDialog {
 			}
 		});
 		txtYEnd.setColumns(10);
+		
+		btnPromenaBoja = new JButton("Promena boje");
+		btnPromenaBoja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+			}
+		});
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
 		gl_contentPanel.setHorizontalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblXStart)
-						.addComponent(lblYStart)
-						.addComponent(lblXEnd)
-						.addComponent(lblYEnd))
-					.addGap(36)
-					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtXEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtYStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtXStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(96, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblXStart)
+								.addComponent(lblYStart)
+								.addComponent(lblXEnd)
+								.addComponent(lblYEnd))
+							.addGap(36)
+							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtXEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtYStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtXStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnPromenaBoja))
+					.addContainerGap(104, Short.MAX_VALUE))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
@@ -153,7 +169,9 @@ public class DrwLinDlg extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblYEnd)
 						.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(61, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnPromenaBoja)
+					.addContainerGap(30, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{
@@ -182,6 +200,7 @@ public class DrwLinDlg extends JDialog {
 									if(shapes instanceof Line) {
 										((Line) shapes).setStart(new Point(sx,sy));
 										((Line) shapes).setEnd(new Point(ex, ey));
+										shapes.setBoja(boja);
 									}
 									
 								}
@@ -279,6 +298,14 @@ public class DrwLinDlg extends JDialog {
 
 	public void setEy(int ey) {
 		this.ey = ey;
+	}
+
+	public Color getBoja() {
+		return boja;
+	}
+
+	public void setBoja(Color boja) {
+		this.boja = boja;
 	}
 
 }

@@ -1,9 +1,11 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -26,6 +28,9 @@ public class DrwPoiDlg extends JDialog {
 	private JTextField txtYCoord;
 	private int xp;
 	private int yp;
+	private Color boja = Color.BLACK;
+	private Color bojaTacke = Color.BLACK;
+	
 	/**
 	 * Launch the application.
 	 */
@@ -79,19 +84,29 @@ public class DrwPoiDlg extends JDialog {
 			}
 		});
 		txtYCoord.setColumns(10);
+		
+		JButton btnBoja = new JButton("Promena boje");
+		btnBoja.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+			}
+		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
 		gl_pnlCentar.setHorizontalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlCentar.createSequentialGroup()
 					.addGap(24)
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblXKoordinata)
-						.addComponent(lblYKoordinata))
-					.addGap(28)
-					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-						.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(54, Short.MAX_VALUE))
+						.addComponent(btnBoja)
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblXKoordinata)
+								.addComponent(lblYKoordinata))
+							.addGap(28)
+							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
+								.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+					.addContainerGap(64, Short.MAX_VALUE))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -104,7 +119,9 @@ public class DrwPoiDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
 						.addComponent(lblYKoordinata)
 						.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(126, Short.MAX_VALUE))
+					.addGap(28)
+					.addComponent(btnBoja)
+					.addContainerGap(85, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -125,6 +142,7 @@ public class DrwPoiDlg extends JDialog {
 							for (Shapes shapes : PnlDrawing.shapesarr) {
 								if(shapes.isSelected()) {
 									shapes.move(xp, yp);
+									shapes.setBoja(boja);
 								}
 							}
 							dispose();
@@ -213,5 +231,13 @@ public class DrwPoiDlg extends JDialog {
 
 	public void setYp(int yp) {
 		this.yp = yp;
+	}
+
+	public Color getBoja() {
+		return boja;
+	}
+
+	public void setBoja(Color boja) {
+		this.boja = boja;
 	}
 }

@@ -47,6 +47,7 @@ public class Circle extends Shapes {
 
 	@Override
 	public void draw(Graphics g) {
+		g.setColor(getBoja());
 		g.drawOval(this.getCenter().getX() - this.getRadius(), this.getCenter().getY() - this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 		
 		if (isSelected()) {

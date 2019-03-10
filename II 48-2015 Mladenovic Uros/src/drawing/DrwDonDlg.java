@@ -1,7 +1,10 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
+
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -28,6 +31,10 @@ public class DrwDonDlg extends JDialog {
 	private int cy;
 	private int up;
 	private int sp;
+	private Color boja = Color.BLACK;
+	private Color bojaTacke = Color.BLACK;
+	
+	
 	
 	/**
 	 * Launch the application.
@@ -49,7 +56,7 @@ public class DrwDonDlg extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("Unos/Modifikacija Krofne");
-		setBounds(100, 100, 333, 300);
+		setBounds(100, 100, 333, 351);
 		getContentPane().setLayout(new BorderLayout());
 		pnlCentar.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnlCentar, BorderLayout.CENTER);
@@ -114,23 +121,33 @@ public class DrwDonDlg extends JDialog {
 			}
 		});
 		txtYCoord.setColumns(10);
+		
+		JButton btnNewButton = new JButton("Promena boje ivice");
+		btnNewButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+			}
+		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
 		gl_pnlCentar.setHorizontalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlCentar.createSequentialGroup()
 					.addContainerGap()
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblSP)
-						.addComponent(lblXKoordinataCentra)
-						.addComponent(lblYKoordinataCentra)
-						.addComponent(lblUP))
-					.addGap(42)
-					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
-						.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtSP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addContainerGap(59, Short.MAX_VALUE))
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
+								.addComponent(lblSP)
+								.addComponent(lblXKoordinataCentra)
+								.addComponent(lblYKoordinataCentra)
+								.addComponent(lblUP))
+							.addGap(42)
+							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
+								.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtSP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+								.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+						.addComponent(btnNewButton))
+					.addContainerGap(69, Short.MAX_VALUE))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -151,7 +168,9 @@ public class DrwDonDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblUP))
-					.addContainerGap(34, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnNewButton)
+					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -280,6 +299,14 @@ public class DrwDonDlg extends JDialog {
 
 	public void setSp(int sp) {
 		this.sp = sp;
+	}
+
+	public Color getBoja() {
+		return boja;
+	}
+
+	public void setBoja(Color boja) {
+		this.boja = boja;
 	}
 
 }

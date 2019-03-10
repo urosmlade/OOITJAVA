@@ -1,10 +1,12 @@
 package drawing;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.FlowLayout;
 import java.awt.Toolkit;
 
 import javax.swing.JButton;
+import javax.swing.JColorChooser;
 import javax.swing.JDialog;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -32,6 +34,10 @@ public class DrwCirDlg extends JDialog {
 	private	int cy;
 	private int rad;
 	DrawingFrm frm = new DrawingFrm();
+	private Color boja = Color.BLACK;
+	private Color bojaTacke = Color.BLACK;
+	
+	
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +58,7 @@ public class DrwCirDlg extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("Unos/Modifikacija Kruga");
-		setBounds(100, 100, 324, 273);
+		setBounds(100, 100, 324, 333);
 		getContentPane().setLayout(new BorderLayout());
 		pnlCentar.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnlCentar, BorderLayout.CENTER);
@@ -106,6 +112,13 @@ public class DrwCirDlg extends JDialog {
 			}
 		});
 		txtYCoord.setColumns(10);
+		
+		JButton btnPromenaBoje = new JButton("Promena boje");
+		btnPromenaBoje.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				boja = JColorChooser.showDialog(null, "Panela boja", bojaTacke);
+			}
+		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
 		gl_pnlCentar.setHorizontalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -113,18 +126,23 @@ public class DrwCirDlg extends JDialog {
 					.addContainerGap()
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnlCentar.createSequentialGroup()
-							.addComponent(lblXKoordinataCentra)
-							.addPreferredGap(ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
-							.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-						.addGroup(gl_pnlCentar.createSequentialGroup()
-							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING, false)
-								.addComponent(lblPoluprecnik, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-								.addComponent(lblYKoordinataCentra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-							.addPreferredGap(ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
 							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtYCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtRadius, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-					.addContainerGap(32, Short.MAX_VALUE))
+								.addGroup(gl_pnlCentar.createSequentialGroup()
+									.addComponent(lblXKoordinataCentra)
+									.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+									.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+								.addGroup(gl_pnlCentar.createSequentialGroup()
+									.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING, false)
+										.addComponent(lblPoluprecnik, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+										.addComponent(lblYKoordinataCentra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+									.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+									.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
+										.addComponent(txtYCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+										.addComponent(txtRadius, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
+							.addContainerGap(48, Short.MAX_VALUE))
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addComponent(btnPromenaBoje)
+							.addContainerGap(209, Short.MAX_VALUE))))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -143,7 +161,9 @@ public class DrwCirDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtRadius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblPoluprecnik))
-					.addContainerGap(118, Short.MAX_VALUE))
+					.addGap(33)
+					.addComponent(btnPromenaBoje)
+					.addContainerGap(73, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -173,6 +193,7 @@ public class DrwCirDlg extends JDialog {
 									shapes.move(cx, cy);
 									if(shapes instanceof Circle) {
 										((Circle) shapes).setRadius(rad);
+										shapes.setBoja(boja);
 									}
 								}
 							}
@@ -230,4 +251,14 @@ public class DrwCirDlg extends JDialog {
 	public void setTxtYCoord(JTextField txtYCoord) {
 		this.txtYCoord = txtYCoord;
 	}
+
+	public Color getBoja() {
+		return boja;
+	}
+
+	public void setBoja(Color boja) {
+		this.boja = boja;
+	}
+
+
 }

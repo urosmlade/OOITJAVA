@@ -42,11 +42,7 @@ public class Line extends Shapes {
 	}
 	
 	
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 	
 	public double length() {
 		return start.distance(end.getX(), end.getY());
@@ -64,6 +60,7 @@ public class Line extends Shapes {
 
 	@Override
 	public void draw(Graphics g) {
+		g.setColor(getBoja());
 		g.drawLine(this.getStart().getX(), this.getStart().getY(), this.getEnd().getX(), this.getEnd().getY());
 		if(isSelected() == true) {
 			g.drawRect(this.getStart().getX()-3, this.getStart().getY()-3, 6, 6);
@@ -94,6 +91,12 @@ public class Line extends Shapes {
 
 	@Override
 	public void move(int sx, int sy) {
+	}
+
+	@Override
+	public int compareTo(Object arg0) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 	
 	

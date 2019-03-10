@@ -39,6 +39,8 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		
 		if(selecttb == false) {
 			switch (obj) {
+			
+			
 			case 2:
 				System.out.println(click);
 				if(click % 2 == 0 ) {
@@ -59,6 +61,8 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				drwrecdlg.getTxtYCoord().setText(String.valueOf(my));
 				drwrecdlg.getTxtXCoord().setEditable(false);
 				drwrecdlg.getTxtYCoord().setEditable(false);
+				drwrecdlg.getBtnPromenaBoje().setEnabled(false);
+				drwrecdlg.getBtnPromenaBojePravougaonika().setEnabled(false);
 				drwrecdlg.setVisible(true);
 				if(drwrecdlg.isOk == true) {
 					width = Integer.parseInt(drwrecdlg.getTxtSirina().getText());
@@ -118,6 +122,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 
 	public void paintComponent(Graphics g) {
 			super.paintComponent(g);
+
 			if(selecttb == false) {
 			switch (obj) {
 			case 1:
@@ -134,7 +139,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 					endtrue = false;
 					System.out.println(shapesarr);
 				}
-				
 				break;
 				
 			case 3:

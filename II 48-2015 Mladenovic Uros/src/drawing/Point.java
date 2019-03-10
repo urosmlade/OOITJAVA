@@ -1,5 +1,6 @@
 package drawing;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.util.Iterator;
 
@@ -23,6 +24,7 @@ public class Point extends Shapes {
 	
 	
 	public void draw (Graphics g) {
+		g.setColor(getBoja());
 		g.drawLine(this.getX()-2, this.getY(), this.getX()+2, this.getY());
 		g.drawLine(this.getX(), this.getY()-2, this.getX(), this.getY()+2);	
 		if(isSelected() == true) {
@@ -63,7 +65,7 @@ public class Point extends Shapes {
 	}
 
 	public String toString() {
-		return "( " + this.getX() + " , " + this.getY() + " )" + isSelected();
+		return "( " + this.getX() + " , " + this.getY() + " )" + isSelected() ;
 	}
 
 	@Override
