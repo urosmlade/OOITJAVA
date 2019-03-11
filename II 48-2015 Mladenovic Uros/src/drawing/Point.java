@@ -84,4 +84,10 @@ public class Point extends Shapes {
 	public String toString() {
 		return "( " + this.getX() + " , " + this.getY() + " )" + isSelected() ;
 	}
+
+	@Override
+	public void boji(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 }

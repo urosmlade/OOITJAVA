@@ -29,6 +29,12 @@ public class Donut extends Circle{
 	}
 	
 	@Override
+	public void boji(Graphics g) {
+		// TODO Auto-generated method stub
+		//super.boji(g);
+	}
+	
+	@Override
 	public void dijalog() {
 		DrwDonDlg drwdondlg = new DrwDonDlg();
 		for (Shapes shapes: pnl.shapesarr) {
@@ -52,4 +58,6 @@ public class Donut extends Circle{
 	public String toString() {
 		return super.toString() + ", inner radius = " + innerRadius + " " + isSelected();
 	}
+
+	
 }

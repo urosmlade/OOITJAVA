@@ -40,6 +40,7 @@ public class Rectangle extends Shapes {
 
 	@Override
 	public void draw(Graphics g) {
+
 		g.setColor(getBoja());
 		g.drawRect(this.getUlp().getX(), this.getUlp().getY(), this.getWidth(), this.getHeight());
 		if(isSelected() == true) {
@@ -48,6 +49,12 @@ public class Rectangle extends Shapes {
 			g.drawRect(this.getUlp().getX() - 3, this.getUlp().getY() - 3 + height, 6, 6);
 			g.drawRect(this.getUlp().getX() - 3 + width, this.getUlp().getY() - 3 + height, 6, 6);
 		}
+	}
+	
+	@Override
+	public void boji(Graphics g) {
+		g.setColor(getBojafill());
+		g.fillRect(this.getUlp().getX()+1, this.getUlp().getY()+1, this.getWidth()-2, this.getHeight()-2);		
 	}
 	
 	@Override
@@ -95,4 +102,6 @@ public class Rectangle extends Shapes {
 	public String toString() {
 		return "X koordinata: " + getUlp().getX() + " , Y koordinata: " + getUlp().getY() + " , sirina: " + getWidth() + " , visina: " + getHeight() + " " + isSelected(); 
 	}
+
+	
 }

@@ -12,6 +12,7 @@ import javax.swing.GroupLayout.Alignment;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
+import java.awt.Color;
 
 public class DrawingFrm extends JFrame {
 
@@ -33,7 +34,7 @@ public class DrawingFrm extends JFrame {
 	
 	public DrawingFrm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 728, 471);
+		setBounds(100, 100, 728, 429);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
@@ -41,6 +42,7 @@ public class DrawingFrm extends JFrame {
 		contentPane.setLayout(new BorderLayout(0, 0));
 		
 		pnl = new PnlDrawing();
+		pnl.setBackground(Color.WHITE);
 		pnl.setBorder(null);
 		contentPane.add(pnl, BorderLayout.CENTER);
 		GroupLayout gl_pnldrawing = new GroupLayout(pnl);
@@ -55,7 +57,7 @@ public class DrawingFrm extends JFrame {
 		pnl.setLayout(gl_pnldrawing);
 		
 		JPanel pnlLevo = new JPanel();
-		pnlLevo.setBorder(null);
+		pnlLevo.setBackground(Color.LIGHT_GRAY);
 		contentPane.add(pnlLevo, BorderLayout.WEST);
 		
 		

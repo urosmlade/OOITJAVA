@@ -34,6 +34,9 @@ public class DrwDonDlg extends JDialog {
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
 	private JButton btnPromenaBoje;
+	private Color bojaPovrsine = Color.WHITE;
+	private JButton btnPromenaBojeKruga;
+	
 	
 	/**
 	 * Launch the application.
@@ -55,7 +58,7 @@ public class DrwDonDlg extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("Unos/Modifikacija Kruga sa rupom");
-		setBounds(100, 100, 288, 337);
+		setBounds(100, 100, 288, 400);
 		getContentPane().setLayout(new BorderLayout());
 		pnlCentar.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnlCentar, BorderLayout.CENTER);
@@ -134,10 +137,17 @@ public class DrwDonDlg extends JDialog {
 		});
 		txtYCoord.setColumns(10);
 		
-		btnPromenaBoje = new JButton("Promena boje ");
+		btnPromenaBoje = new JButton("Promena boje ivice");
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+			}
+		});
+		
+		btnPromenaBojeKruga = new JButton("Promena boje kruga sa rupom");
+		btnPromenaBojeKruga.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				bojaPovrsine = JColorChooser.showDialog(null, "Paleta boja", bojaTacke);
 			}
 		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
@@ -157,9 +167,14 @@ public class DrwDonDlg extends JDialog {
 								.addComponent(txtYCoord)
 								.addComponent(txtXCoord)
 								.addComponent(txtSP)
-								.addComponent(txtUP)))
-						.addComponent(btnPromenaBoje))
-					.addGap(24))
+								.addComponent(txtUP))
+							.addGap(24))
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addComponent(btnPromenaBoje)
+							.addContainerGap(139, Short.MAX_VALUE))
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addComponent(btnPromenaBojeKruga)
+							.addContainerGap(87, Short.MAX_VALUE))))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -180,9 +195,11 @@ public class DrwDonDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
 						.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblUP))
-					.addGap(18)
+					.addGap(41)
 					.addComponent(btnPromenaBoje)
-					.addContainerGap(60, Short.MAX_VALUE))
+					.addGap(18)
+					.addComponent(btnPromenaBojeKruga)
+					.addContainerGap(69, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -204,10 +221,11 @@ public class DrwDonDlg extends JDialog {
 								for (Shapes shapes : PnlDrawing.shapesarr) {
 									if(shapes.isSelected()) {
 										shapes.move(cx, cy);
+										shapes.setBoja(boja);
+										shapes.setBojafill(bojaPovrsine);
 										if(shapes instanceof Donut) {
 											((Donut) shapes).setInnerRadius(up);
 											((Donut) shapes).setRadius(sp);
-											shapes.setBoja(boja);
 										}
 									}
 								}
@@ -328,6 +346,14 @@ public class DrwDonDlg extends JDialog {
 
 	public void setBtnPromenaBoje(JButton btnPromenaBoje) {
 		this.btnPromenaBoje = btnPromenaBoje;
+	}
+
+	public JButton getBtnPromenaBojeKruga() {
+		return btnPromenaBojeKruga;
+	}
+
+	public void setBtnPromenaBojeKruga(JButton btnPromenaBojeKruga) {
+		this.btnPromenaBojeKruga = btnPromenaBojeKruga;
 	}
 
 }

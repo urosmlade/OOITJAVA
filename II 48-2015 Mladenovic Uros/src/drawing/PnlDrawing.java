@@ -17,7 +17,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		addMouseListener(this);
 	}
 	
-	
 	@Override
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 		mx = e.getX();
@@ -45,6 +44,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				drwrecdlg.getTxtXCoord().setEditable(false);
 				drwrecdlg.getTxtYCoord().setEditable(false);
 				drwrecdlg.getBtnPromenaBoje().setEnabled(false);
+				drwrecdlg.getBtnPromenaFill().setEnabled(false);
 				drwrecdlg.setVisible(true);
 				if(drwrecdlg.isOk == true) {
 					width = Integer.parseInt(drwrecdlg.getTxtSirina().getText());
@@ -60,6 +60,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				drwcirdlg.getTxtXCoord().setEditable(false);
 				drwcirdlg.getTxtYCoord().setEditable(false);
 				drwcirdlg.getBtnPromenaBoje().setEnabled(false);
+				drwcirdlg.getBtnPromenaBojeKruga().setEnabled(false);
 				drwcirdlg.setVisible(true);
 				if (drwcirdlg.isOk == true) {
 					radius = Integer.parseInt(drwcirdlg.getTxtRadius().getText());
@@ -74,6 +75,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				drwdondlg.getTxtXCoord().setEditable(false);
 				drwdondlg.getTxtYCoord().setEditable(false);
 				drwdondlg.getBtnPromenaBoje().setEnabled(false);
+				drwdondlg.getBtnPromenaBojeKruga().setEnabled(false);
 				drwdondlg.setVisible(true);
 				if(drwdondlg.isOk == true) {
 					dr = Integer.parseInt(drwdondlg.getTxtSP().getText());
@@ -103,7 +105,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 
 	public void paint(Graphics g) {
 			super.paint(g);
-			
 			if(selecttb == false) {
 			switch (obj) {
 			case 1:
@@ -148,6 +149,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		}
 			for (Shapes shapes : shapesarr) {
 				shapes.draw(g);
+				shapes.boji(g);
 			}
 	}
 	

@@ -86,4 +86,10 @@ public class Line extends Shapes {
 	public String toString() {
 		return "(" + this.getStart() + ", " + this.getEnd() + " )"  + " " + isSelected();
 	}
+
+	@Override
+	public void boji(Graphics g) {
+		// TODO Auto-generated method stub
+		
+	}
 }
