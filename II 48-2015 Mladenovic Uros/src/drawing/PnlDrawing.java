@@ -8,8 +8,8 @@ import javax.swing.JPanel;
 
 public class PnlDrawing extends JPanel implements MouseListener{
 	int mx,my,x,y,sx,sy,ex,ey,radius,dr,dir,click = 1,width,height;
-	static int obj; 
-	boolean starttrue,endtrue,rectrue,cirtrue,dontrue;	
+	static int obj = 0; 
+	boolean starttrue,endtrue,rectrue,cirtrue,dontrue,pointtrue;	
 	static boolean selecttb;
 	static ArrayList <Shapes> shapesarr = new ArrayList <Shapes>();
 	
@@ -23,6 +23,9 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		my = e.getY();	
 		if(selecttb == false) {
 			switch (obj) {
+			case 1:
+				pointtrue = true;
+				break;
 			case 2:
 				System.out.println(click);
 				if(click % 2 == 0 ) {
@@ -32,7 +35,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				}
 				if (click % 2 != 0 ) {
 					ex = e.getX();
-					ey =e.getY();
+					ey = e.getY();
 					endtrue = true;
 				}
 				break;
@@ -100,7 +103,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				break;
 			}
 		}
-		repaint();
+		//repaint(); ovde je bio ranije pa je premesten na kraj paint metode
 	}
 
 	public void paint(Graphics g) {
@@ -108,10 +111,12 @@ public class PnlDrawing extends JPanel implements MouseListener{
 			if(selecttb == false) {
 			switch (obj) {
 			case 1:
-				Point p = new Point(mx,my,false);
-				shapesarr.add(p);
+				if(pointtrue == true) {
+					Point p = new Point(mx,my,false);
+					shapesarr.add(p);
+					pointtrue = false;
+				}
 				break;
-
 			case 2:
 				if(starttrue == true && endtrue== true) {
 					Line l = new Line(new Point(sx, sy), new Point(ex, ey), false);
@@ -120,7 +125,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 					endtrue = false;
 				}
 				break;
-				
 			case 3:
 				if(rectrue == true) {
 					Rectangle r = new Rectangle(new Point(mx,my),width,height,false);					
@@ -128,7 +132,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 					rectrue = false;
 				}
 				break;
-				
 			case 4:
 				if(cirtrue == true) {
 					Circle c = new Circle(new Point(mx,my), radius, false);
@@ -136,7 +139,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 					cirtrue = false;
 				}
 				break;
-				
 			case 5:
 				if(dontrue == true) {
 					Donut d = new Donut(new Point(mx,my), dr, dir, false);
@@ -150,6 +152,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				shapes.draw(g);
 				shapes.boji(g);
 			}
+			repaint();
 	}
 	
 	@Override
