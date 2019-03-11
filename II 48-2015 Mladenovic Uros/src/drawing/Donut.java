@@ -1,4 +1,5 @@
 package drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Donut extends Circle{
@@ -31,6 +32,12 @@ public class Donut extends Circle{
 	@Override
 	public void boji(Graphics g) {
 		// TODO Auto-generated method stub
+		g.setColor(getBojafill());
+		super.boji(g);
+		g.setColor(getBoja());
+		g.drawOval(this.getCenter().getX() - this.getInnerRadius(), this.getCenter().getY() - this.getInnerRadius(), this.getInnerRadius()*2, this.getInnerRadius()*2);
+		g.setColor(Color.WHITE);
+		g.fillOval(this.getCenter().getX()+1 - this.getInnerRadius(), this.getCenter().getY()+1 - this.getInnerRadius(), this.getInnerRadius()*2-2, this.getInnerRadius()*2-2);
 	}
 	
 	@Override
