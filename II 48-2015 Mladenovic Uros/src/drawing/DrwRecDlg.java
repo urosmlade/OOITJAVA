@@ -159,7 +159,7 @@ public class DrwRecDlg extends JDialog {
 		
 		lblXKoordinata = new JLabel("X koordinata:");
 		
-		btnPromenaBoje = new JButton("Promena boje");
+		btnPromenaBoje = new JButton("Promena boje ivice");
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", boja);
@@ -167,7 +167,7 @@ public class DrwRecDlg extends JDialog {
 			}
 		});
 		
-		btnPromenaFill = new JButton("Promena boje fill");
+		btnPromenaFill = new JButton("Promena boje povrsine");
 		btnPromenaFill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bojaPovrsine = JColorChooser.showDialog(null, "Paleta boja", bojaPovrsine);

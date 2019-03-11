@@ -149,7 +149,7 @@ public class DrwLinDlg extends JDialog {
 		});
 		txtYEnd.setColumns(10);
 		
-		btnPromenaBoja = new JButton("Promena boje");
+		btnPromenaBoja = new JButton("Promena boje linije");
 		btnPromenaBoja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);

@@ -97,7 +97,7 @@ public class DrwPoiDlg extends JDialog {
 		});
 		txtYCoord.setColumns(10);
 		
-		JButton btnBoja = new JButton("Promena boje");
+		JButton btnBoja = new JButton("Promena boje tacke");
 		btnBoja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);

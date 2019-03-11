@@ -142,7 +142,7 @@ public class DrwCirDlg extends JDialog {
 			}
 		});
 		
-		btnPromenaBojeKruga = new JButton("Promena boje kruga");
+		btnPromenaBojeKruga = new JButton("Promena boje povrsine");
 		btnPromenaBojeKruga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bojaPovrsine = JColorChooser.showDialog(null, "Paleta boja", bojaTacke);
