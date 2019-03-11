@@ -5,6 +5,7 @@ public class Circle extends Shapes {
 	private Point center;
 	private int radius;
 	PnlDrawing pnl = new PnlDrawing();
+	
 		
 	public Circle (Point center, int radius) {
 		this.center = center;
@@ -32,11 +33,11 @@ public class Circle extends Shapes {
 		g.setColor(getBoja());
 		g.drawOval(this.getCenter().getX() - this.getRadius(), this.getCenter().getY() - this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 			if (isSelected()) {
-			g.drawRect(this.getCenter().getX() + getRadius() - 3, this.getCenter().getY()-3, 6, 6);
-			g.drawRect(this.getCenter().getX() - getRadius() - 3, this.getCenter().getY()-3, 6, 6);
-			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + getRadius() -3, 6, 6);
-			g.drawRect(this.getCenter().getX()  - 3, this.getCenter().getY() - getRadius() -3, 6, 6);
-			g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - 3, 6, 6);
+				g.drawRect(this.getCenter().getX() + getRadius() - 3, this.getCenter().getY()-3, 6, 6);
+				g.drawRect(this.getCenter().getX() - getRadius() - 3, this.getCenter().getY()-3, 6, 6);
+				g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + getRadius() -3, 6, 6);
+				g.drawRect(this.getCenter().getX()  - 3, this.getCenter().getY() - getRadius() -3, 6, 6);
+				g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() - 3, 6, 6);
 		}
 	}
 	
@@ -84,6 +85,7 @@ public class Circle extends Shapes {
 		return "Center= " + center + ", radius= " + radius + " " + isSelected(); 
 	}
 
+	
 	
 
 }

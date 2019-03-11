@@ -31,7 +31,6 @@ public class Donut extends Circle{
 	@Override
 	public void boji(Graphics g) {
 		// TODO Auto-generated method stub
-		//super.boji(g);
 	}
 	
 	@Override

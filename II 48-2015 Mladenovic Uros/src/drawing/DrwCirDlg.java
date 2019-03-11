@@ -32,10 +32,12 @@ public class DrwCirDlg extends JDialog {
 	DrawingFrm frm = new DrawingFrm();
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
-	PnlDrawing pnl = new PnlDrawing();
 	private JButton btnPromenaBoje;
 	private Color bojaPovrsine = Color.WHITE;
 	private JButton btnPromenaBojeKruga;
+	private boolean bojab;
+	private boolean bojafillb;
+	
 
 	/**
 	 * Launch the application.
@@ -136,6 +138,7 @@ public class DrwCirDlg extends JDialog {
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panela boja", bojaTacke);
+				setBojab(true);
 			}
 		});
 		
@@ -143,6 +146,7 @@ public class DrwCirDlg extends JDialog {
 		btnPromenaBojeKruga.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bojaPovrsine = JColorChooser.showDialog(null, "Paleta boja", bojaTacke);
+				setBojafillb(true);
 			}
 		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
@@ -219,14 +223,20 @@ public class DrwCirDlg extends JDialog {
 							for (Shapes shapes : PnlDrawing.shapesarr) {
 								if(shapes.isSelected()) {
 									shapes.move(cx, cy);
-									shapes.setBoja(boja);
-									shapes.setBojafill(bojaPovrsine);
+									if(isBojab() == true) {
+										shapes.setBoja(boja);
+										setBojab(false);
+									}
+									if(isBojafillb() == true) {
+										shapes.setBojafill(bojaPovrsine);
+										setBojafillb(false);	
+									}
+									
 									if(shapes instanceof Circle) {
 										((Circle) shapes).setRadius(rad);
 									}
 								}
 							}
-							pnl.repaint();
 							isOk = true;
 							dispose();
 						}
@@ -305,6 +315,24 @@ public class DrwCirDlg extends JDialog {
 	public void setBtnPromenaBojeKruga(JButton btnPromenaBojeKruga) {
 		this.btnPromenaBojeKruga = btnPromenaBojeKruga;
 	}
+
+	public boolean isBojab() {
+		return bojab;
+	}
+
+	public void setBojab(boolean bojab) {
+		this.bojab = bojab;
+	}
+
+	public boolean isBojafillb() {
+		return bojafillb;
+	}
+
+	public void setBojafillb(boolean bojafillb) {
+		this.bojafillb = bojafillb;
+	}
+
+	
 
 
 }

@@ -40,7 +40,6 @@ public class Rectangle extends Shapes {
 
 	@Override
 	public void draw(Graphics g) {
-
 		g.setColor(getBoja());
 		g.drawRect(this.getUlp().getX(), this.getUlp().getY(), this.getWidth(), this.getHeight());
 		if(isSelected() == true) {
@@ -54,7 +53,7 @@ public class Rectangle extends Shapes {
 	@Override
 	public void boji(Graphics g) {
 		g.setColor(getBojafill());
-		g.fillRect(this.getUlp().getX()+1, this.getUlp().getY()+1, this.getWidth()-2, this.getHeight()-2);		
+		g.fillRect(this.getUlp().getX()+1, this.getUlp().getY()+1, this.getWidth()-1, this.getHeight()-1);		
 	}
 	
 	@Override

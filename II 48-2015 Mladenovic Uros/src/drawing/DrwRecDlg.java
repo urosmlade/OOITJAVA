@@ -38,6 +38,8 @@ public class DrwRecDlg extends JDialog {
 	private Color bojaPovrsine = Color.WHITE;
 	private JButton btnPromenaBoje;
 	private JButton btnPromenaFill;
+	private boolean bojab;
+	private boolean bojafillb;
 	
 	
 	/**
@@ -161,6 +163,7 @@ public class DrwRecDlg extends JDialog {
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", boja);
+				setBojab(true);
 			}
 		});
 		
@@ -168,6 +171,7 @@ public class DrwRecDlg extends JDialog {
 		btnPromenaFill.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 				bojaPovrsine = JColorChooser.showDialog(null, "Paleta boja", bojaPovrsine);
+				setBojafillb(true);
 			}
 		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
@@ -241,8 +245,14 @@ public class DrwRecDlg extends JDialog {
 							for (Shapes shapes : PnlDrawing.shapesarr) {
 								if(shapes.isSelected()) {
 									shapes.move(rx, ry);
-									shapes.setBoja(boja);
-									shapes.setBojafill(bojaPovrsine);
+									if(isBojab() == true) {
+										shapes.setBoja(boja);
+										setBojab(false);
+									}
+									if(isBojafillb() == true) {
+										shapes.setBojafill(bojaPovrsine);
+										setBojafillb(false);
+									}
 									if(shapes instanceof Rectangle) {
 										((Rectangle) shapes).setWidth(sirina);
 										((Rectangle) shapes).setHeight(visina);
@@ -384,6 +394,22 @@ public class DrwRecDlg extends JDialog {
 
 	public void setBtnPromenaFill(JButton btnPromenaFill) {
 		this.btnPromenaFill = btnPromenaFill;
+	}
+
+	public boolean isBojab() {
+		return bojab;
+	}
+
+	public void setBojab(boolean bojab) {
+		this.bojab = bojab;
+	}
+
+	public boolean isBojafillb() {
+		return bojafillb;
+	}
+
+	public void setBojafillb(boolean bojafillb) {
+		this.bojafillb = bojafillb;
 	}
 
 }

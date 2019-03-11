@@ -100,7 +100,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				break;
 			}
 		}
-		repaint();
+		//repaint();
 	}
 
 	public void paint(Graphics g) {
@@ -145,7 +145,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				}
 				break;
 			}
-
 		}
 			for (Shapes shapes : shapesarr) {
 				shapes.draw(g);
