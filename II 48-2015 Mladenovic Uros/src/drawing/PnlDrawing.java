@@ -100,7 +100,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				break;
 			}
 		}
-		//repaint();
+		repaint();
 	}
 
 	public void paint(Graphics g) {
