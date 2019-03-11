@@ -8,11 +8,11 @@ public abstract class Shapes implements Comparable, Moveable  {
 	private boolean selected;
 	private Color boja = Color.BLACK;
 	
+	DrawingFrm frm = new DrawingFrm();
 	
 	public Shapes() {
 		
 	}
-	
 	
 	
 	public Shapes (boolean selected) {
@@ -32,7 +32,9 @@ public abstract class Shapes implements Comparable, Moveable  {
 	
 	public abstract void dijalog();
 
-
+	public void setBoja(Color boja) {
+		this.boja = boja;
+	}
 
 	public Color getBoja() {
 		return boja;
@@ -40,9 +42,8 @@ public abstract class Shapes implements Comparable, Moveable  {
 
 
 
-	public void setBoja(Color boja) {
-		this.boja = boja;
-	}
+	
+	
 	
 	
 }

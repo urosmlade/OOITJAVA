@@ -1,12 +1,11 @@
 package drawing;
-
 import java.awt.Graphics;
 
 public class Line extends Shapes {
-	
 	private Point start;
 	private Point end;
 	PnlDrawing pnl = new PnlDrawing();
+	
 	public Line(Point start, Point end) {
 		this.start = start;
 		this.end = end;
@@ -17,23 +16,6 @@ public class Line extends Shapes {
 		setSelected(selected);
 	}
 	
-
-	
-	
-	public Point getStart() {
-		return start;
-	}
-	public void setStart(Point start) {
-		this.start = start;
-	}
-	public Point getEnd() {
-		return end;
-	}
-	public void setEnd(Point end) {
-		this.end = end;
-	}
-	
-	
 	public Point middleOfLine() {
 		int middleByX = (this.getStart().getX() + this.getEnd().getX()) / 2;
 		int middleByY = (this.getStart().getY() + this.getEnd().getY()) / 2;
@@ -41,13 +23,9 @@ public class Line extends Shapes {
 		return p;
 	}
 	
-	
-
-	
 	public double length() {
 		return start.distance(end.getX(), end.getY());
 	}
-	
 	
 	@Override
 	public boolean contains(int x, int y) {
@@ -67,10 +45,6 @@ public class Line extends Shapes {
 			g.drawRect(this.getEnd().getX()-3, this.getEnd().getY()-3, 6, 6);
 			g.drawRect(this.middleOfLine().getX()-3, this.middleOfLine().getY()-3, 6, 6);
 		}
-	}
-	
-	public String toString() {
-		return "(" + this.getStart() + ", " + this.getEnd() + " )"  + " " + isSelected();
 	}
 
 	@Override
@@ -92,14 +66,24 @@ public class Line extends Shapes {
 	@Override
 	public void move(int sx, int sy) {
 	}
-
 	@Override
 	public int compareTo(Object arg0) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
-	
+	public Point getStart() {
+		return start;
+	}
+	public void setStart(Point start) {
+		this.start = start;
+	}
+	public Point getEnd() {
+		return end;
+	}
+	public void setEnd(Point end) {
+		this.end = end;
+	}	
+	public String toString() {
+		return "(" + this.getStart() + ", " + this.getEnd() + " )"  + " " + isSelected();
+	}
 }

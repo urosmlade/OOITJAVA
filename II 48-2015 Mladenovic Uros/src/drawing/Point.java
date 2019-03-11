@@ -1,13 +1,7 @@
 package drawing;
-
-import java.awt.Color;
 import java.awt.Graphics;
-import java.util.Iterator;
 
-import javax.swing.RepaintManager;
-
-public class Point extends Shapes {
-	
+public class Point extends Shapes {	
 	private int x;
 	private int y;
 	PnlDrawing pnl = new PnlDrawing();	
@@ -22,7 +16,6 @@ public class Point extends Shapes {
 		setSelected(selected);
 	}
 	
-	
 	public void draw (Graphics g) {
 		g.setColor(getBoja());
 		g.drawLine(this.getX()-2, this.getY(), this.getX()+2, this.getY());
@@ -32,7 +25,6 @@ public class Point extends Shapes {
 		}
 		
 	}
-	
 	
 	@Override
 	public boolean contains(int x, int y) {
@@ -50,24 +42,6 @@ public class Point extends Shapes {
 		return d;
 	}
 	
-	
-	public int getX() {
-		return x;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-
-	public String toString() {
-		return "( " + this.getX() + " , " + this.getY() + " )" + isSelected() ;
-	}
-
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
@@ -93,10 +67,21 @@ public class Point extends Shapes {
 		this.x = newX;
 		this.y = newY;		
 	}
-
 	
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
 
-
-
-	
+	public String toString() {
+		return "( " + this.getX() + " , " + this.getY() + " )" + isSelected() ;
+	}
 }

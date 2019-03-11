@@ -33,8 +33,7 @@ public class DrwDonDlg extends JDialog {
 	private int sp;
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
-	
-	
+	private JButton btnPromenaBoje;
 	
 	/**
 	 * Launch the application.
@@ -55,8 +54,8 @@ public class DrwDonDlg extends JDialog {
 	public DrwDonDlg() {
 		setModal(true);
 		setResizable(false);
-		setTitle("Unos/Modifikacija Krofne");
-		setBounds(100, 100, 333, 351);
+		setTitle("Unos/Modifikacija Kruga sa rupom");
+		setBounds(100, 100, 288, 337);
 		getContentPane().setLayout(new BorderLayout());
 		pnlCentar.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnlCentar, BorderLayout.CENTER);
@@ -67,12 +66,18 @@ public class DrwDonDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtUP().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
-			
 			}
 		});
 		txtUP.setColumns(10);
@@ -81,10 +86,17 @@ public class DrwDonDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtSP().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -122,8 +134,8 @@ public class DrwDonDlg extends JDialog {
 		});
 		txtYCoord.setColumns(10);
 		
-		JButton btnNewButton = new JButton("Promena boje ivice");
-		btnNewButton.addActionListener(new ActionListener() {
+		btnPromenaBoje = new JButton("Promena boje ");
+		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
 			}
@@ -142,12 +154,12 @@ public class DrwDonDlg extends JDialog {
 								.addComponent(lblUP))
 							.addGap(42)
 							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
-								.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtSP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnNewButton))
-					.addContainerGap(69, Short.MAX_VALUE))
+								.addComponent(txtYCoord)
+								.addComponent(txtXCoord)
+								.addComponent(txtSP)
+								.addComponent(txtUP)))
+						.addComponent(btnPromenaBoje))
+					.addGap(24))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -169,7 +181,7 @@ public class DrwDonDlg extends JDialog {
 						.addComponent(txtUP, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 						.addComponent(lblUP))
 					.addGap(18)
-					.addComponent(btnNewButton)
+					.addComponent(btnPromenaBoje)
 					.addContainerGap(60, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
@@ -195,6 +207,7 @@ public class DrwDonDlg extends JDialog {
 										if(shapes instanceof Donut) {
 											((Donut) shapes).setInnerRadius(up);
 											((Donut) shapes).setRadius(sp);
+											shapes.setBoja(boja);
 										}
 									}
 								}
@@ -307,6 +320,14 @@ public class DrwDonDlg extends JDialog {
 
 	public void setBoja(Color boja) {
 		this.boja = boja;
+	}
+
+	public JButton getBtnPromenaBoje() {
+		return btnPromenaBoje;
+	}
+
+	public void setBtnPromenaBoje(JButton btnPromenaBoje) {
+		this.btnPromenaBoje = btnPromenaBoje;
 	}
 
 }

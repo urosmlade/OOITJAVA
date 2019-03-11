@@ -2,9 +2,6 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-import java.awt.Toolkit;
-
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -20,7 +17,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.nio.channels.ShutdownChannelGroupException;
 
 public class DrwCirDlg extends JDialog {
 
@@ -36,7 +32,8 @@ public class DrwCirDlg extends JDialog {
 	DrawingFrm frm = new DrawingFrm();
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
-	
+	PnlDrawing pnl = new PnlDrawing();
+	private JButton btnPromenaBoje;
 	
 	/**
 	 * Launch the application.
@@ -58,7 +55,7 @@ public class DrwCirDlg extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("Unos/Modifikacija Kruga");
-		setBounds(100, 100, 324, 333);
+		setBounds(100, 100, 262, 333);
 		getContentPane().setLayout(new BorderLayout());
 		pnlCentar.setBorder(new EmptyBorder(5, 5, 5, 5));
 		getContentPane().add(pnlCentar, BorderLayout.CENTER);
@@ -70,10 +67,17 @@ public class DrwCirDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtRadius().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -88,10 +92,17 @@ public class DrwCirDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			
 			}
@@ -103,17 +114,23 @@ public class DrwCirDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
-			
 			}
 		});
 		txtYCoord.setColumns(10);
 		
-		JButton btnPromenaBoje = new JButton("Promena boje");
+		btnPromenaBoje = new JButton("Promena boje");
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panela boja", bojaTacke);
@@ -127,43 +144,44 @@ public class DrwCirDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_pnlCentar.createSequentialGroup()
 							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-								.addGroup(gl_pnlCentar.createSequentialGroup()
+								.addGroup(Alignment.TRAILING, gl_pnlCentar.createSequentialGroup()
 									.addComponent(lblXKoordinataCentra)
-									.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
-									.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addGap(18)
+									.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, 66, GroupLayout.PREFERRED_SIZE)
+									.addPreferredGap(ComponentPlacement.RELATED))
 								.addGroup(gl_pnlCentar.createSequentialGroup()
 									.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING, false)
 										.addComponent(lblPoluprecnik, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
 										.addComponent(lblYKoordinataCentra, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-									.addPreferredGap(ComponentPlacement.RELATED, 66, Short.MAX_VALUE)
+									.addGap(18)
 									.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-										.addComponent(txtYCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-										.addComponent(txtRadius, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
-							.addContainerGap(48, Short.MAX_VALUE))
+										.addComponent(txtRadius)
+										.addComponent(txtYCoord))))
+							.addGap(71))
 						.addGroup(gl_pnlCentar.createSequentialGroup()
 							.addComponent(btnPromenaBoje)
-							.addContainerGap(209, Short.MAX_VALUE))))
+							.addContainerGap(137, Short.MAX_VALUE))))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_pnlCentar.createSequentialGroup()
 					.addGap(24)
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
-						.addComponent(lblXKoordinataCentra)
+						.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
+							.addComponent(lblXKoordinataCentra)
+							.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
 						.addGroup(gl_pnlCentar.createSequentialGroup()
-							.addPreferredGap(ComponentPlacement.RELATED)
-							.addComponent(txtXCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-							.addGap(18)
+							.addGap(38)
 							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
-								.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(lblYKoordinataCentra))))
+								.addComponent(lblYKoordinataCentra)
+								.addComponent(txtYCoord, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))))
 					.addGap(18)
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
-						.addComponent(txtRadius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-						.addComponent(lblPoluprecnik))
-					.addGap(33)
+						.addComponent(lblPoluprecnik)
+						.addComponent(txtRadius, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+					.addGap(34)
 					.addComponent(btnPromenaBoje)
-					.addContainerGap(73, Short.MAX_VALUE))
+					.addContainerGap(72, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -197,6 +215,7 @@ public class DrwCirDlg extends JDialog {
 									}
 								}
 							}
+							pnl.repaint();
 							isOk = true;
 							dispose();
 						}
@@ -211,9 +230,9 @@ public class DrwCirDlg extends JDialog {
 					.addGroup(gl_pnlDole.createSequentialGroup()
 						.addGap(20)
 						.addComponent(btnPotvrdi)
-						.addPreferredGap(ComponentPlacement.RELATED, 82, Short.MAX_VALUE)
+						.addPreferredGap(ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
 						.addComponent(btnPonisti)
-						.addGap(35))
+						.addGap(39))
 			);
 			gl_pnlDole.setVerticalGroup(
 				gl_pnlDole.createParallelGroup(Alignment.LEADING)
@@ -258,6 +277,14 @@ public class DrwCirDlg extends JDialog {
 
 	public void setBoja(Color boja) {
 		this.boja = boja;
+	}
+
+	public JButton getBtnPromenaBoje() {
+		return btnPromenaBoje;
+	}
+
+	public void setBtnPromenaBoje(JButton btnPromenaBoje) {
+		this.btnPromenaBoje = btnPromenaBoje;
 	}
 
 

@@ -2,8 +2,6 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -38,8 +36,8 @@ public class DrwRecDlg extends JDialog {
 	private int visina;
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
+	private Color bojaPovrsine = Color.BLACK;
 	private JButton btnPromenaBoje;
-	private JButton btnPromenaBojePravougaonika;
 	
 	
 	/**
@@ -76,10 +74,17 @@ public class DrwRecDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtSirina().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -90,10 +95,17 @@ public class DrwRecDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtVisina().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -104,10 +116,17 @@ public class DrwRecDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtYCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -118,10 +137,17 @@ public class DrwRecDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -131,21 +157,21 @@ public class DrwRecDlg extends JDialog {
 		
 		lblXKoordinata = new JLabel("X koordinata:");
 		
-		btnPromenaBoje = new JButton("Promena boje linije");
+		btnPromenaBoje = new JButton("Promena boje");
 		btnPromenaBoje.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
 			}
 		});
-		
-		btnPromenaBojePravougaonika = new JButton("Promena boje pravougaonika");
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
 		gl_pnlCentar.setHorizontalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
-				.addGroup(gl_pnlCentar.createSequentialGroup()
+				.addGroup(Alignment.LEADING, gl_pnlCentar.createSequentialGroup()
 					.addContainerGap()
-					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING)
-						.addComponent(btnPromenaBojePravougaonika, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.LEADING)
+						.addGroup(gl_pnlCentar.createSequentialGroup()
+							.addComponent(btnPromenaBoje)
+							.addContainerGap())
 						.addGroup(gl_pnlCentar.createSequentialGroup()
 							.addGroup(gl_pnlCentar.createParallelGroup(Alignment.TRAILING, false)
 								.addComponent(lblXKoordinata, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -157,9 +183,8 @@ public class DrwRecDlg extends JDialog {
 								.addComponent(txtYCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtSirina, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
 								.addComponent(txtVisina, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtXCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnPromenaBoje, Alignment.LEADING, GroupLayout.DEFAULT_SIZE, GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-					.addGap(31))
+								.addComponent(txtXCoord, Alignment.TRAILING, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+							.addGap(31))))
 		);
 		gl_pnlCentar.setVerticalGroup(
 			gl_pnlCentar.createParallelGroup(Alignment.LEADING)
@@ -181,11 +206,9 @@ public class DrwRecDlg extends JDialog {
 					.addGroup(gl_pnlCentar.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblVisina)
 						.addComponent(txtVisina, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(34)
 					.addComponent(btnPromenaBoje)
-					.addGap(18)
-					.addComponent(btnPromenaBojePravougaonika)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addContainerGap(55, Short.MAX_VALUE))
 		);
 		pnlCentar.setLayout(gl_pnlCentar);
 		{
@@ -207,10 +230,10 @@ public class DrwRecDlg extends JDialog {
 							for (Shapes shapes : PnlDrawing.shapesarr) {
 								if(shapes.isSelected()) {
 									shapes.move(rx, ry);
+									shapes.setBoja(boja);
 									if(shapes instanceof Rectangle) {
 										((Rectangle) shapes).setWidth(sirina);
 										((Rectangle) shapes).setHeight(visina);
-										shapes.setBoja(boja);
 									}
 								}
 							}
@@ -334,11 +357,12 @@ public class DrwRecDlg extends JDialog {
 		this.btnPromenaBoje = btnPromenaBoje;
 	}
 
-	public JButton getBtnPromenaBojePravougaonika() {
-		return btnPromenaBojePravougaonika;
+
+	public Color getBojaPovrsine() {
+		return bojaPovrsine;
 	}
 
-	public void setBtnPromenaBojePravougaonika(JButton btnPromenaBojePravougaonika) {
-		this.btnPromenaBojePravougaonika = btnPromenaBojePravougaonika;
+	public void setBojaPovrsine(Color bojaPovrsine) {
+		this.bojaPovrsine = bojaPovrsine;
 	}
 }

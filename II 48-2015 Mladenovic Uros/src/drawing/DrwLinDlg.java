@@ -2,8 +2,6 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -15,10 +13,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JTextField;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class DrwLinDlg extends JDialog {
 
@@ -62,10 +60,10 @@ public class DrwLinDlg extends JDialog {
 		setModal(true);
 		setResizable(false);
 		setTitle("Unos/Modifikacija Linije");
-		setBounds(100, 100, 387, 324);
+		setBounds(100, 100, 400, 330);
 		getContentPane().setLayout(new BorderLayout());
 		contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
-		getContentPane().add(contentPanel, BorderLayout.CENTER);
+		getContentPane().add(contentPanel, BorderLayout.NORTH);
 		lblXStart = new JLabel("X koordinata pocetne tacke:");
 		lblYStart = new JLabel("Y koordinata pocetne tacke:");
 		lblXEnd = new JLabel("X koordinata krajnje tacke:");
@@ -75,10 +73,17 @@ public class DrwLinDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXStart().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -88,10 +93,17 @@ public class DrwLinDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtYStart().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -101,10 +113,17 @@ public class DrwLinDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXEnd().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -114,10 +133,17 @@ public class DrwLinDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtYEnd().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -137,23 +163,30 @@ public class DrwLinDlg extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
 						.addGroup(gl_contentPanel.createSequentialGroup()
 							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(lblXStart)
-								.addComponent(lblYStart)
-								.addComponent(lblXEnd)
-								.addComponent(lblYEnd))
-							.addGap(36)
-							.addGroup(gl_contentPanel.createParallelGroup(Alignment.LEADING)
-								.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtXEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtYStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
-								.addComponent(txtXStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
-						.addComponent(btnPromenaBoja))
-					.addContainerGap(104, Short.MAX_VALUE))
+								.addComponent(btnPromenaBoja)
+								.addGroup(gl_contentPanel.createParallelGroup(Alignment.TRAILING)
+									.addComponent(txtXEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addGroup(gl_contentPanel.createSequentialGroup()
+										.addComponent(lblXStart)
+										.addGap(49)
+										.addComponent(txtXStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
+									.addComponent(txtYStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)
+									.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE)))
+							.addContainerGap(104, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblYStart)
+							.addContainerGap(239, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblXEnd)
+							.addContainerGap(245, Short.MAX_VALUE))
+						.addGroup(gl_contentPanel.createSequentialGroup()
+							.addComponent(lblYEnd)
+							.addContainerGap(245, Short.MAX_VALUE))))
 		);
 		gl_contentPanel.setVerticalGroup(
 			gl_contentPanel.createParallelGroup(Alignment.LEADING)
 				.addGroup(gl_contentPanel.createSequentialGroup()
-					.addGap(46)
+					.addGap(26)
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblXStart)
 						.addComponent(txtXStart, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
@@ -169,9 +202,9 @@ public class DrwLinDlg extends JDialog {
 					.addGroup(gl_contentPanel.createParallelGroup(Alignment.BASELINE)
 						.addComponent(lblYEnd)
 						.addComponent(txtYEnd, GroupLayout.PREFERRED_SIZE, GroupLayout.DEFAULT_SIZE, GroupLayout.PREFERRED_SIZE))
-					.addGap(18)
+					.addGap(19)
 					.addComponent(btnPromenaBoja)
-					.addContainerGap(30, Short.MAX_VALUE))
+					.addContainerGap(37, Short.MAX_VALUE))
 		);
 		contentPanel.setLayout(gl_contentPanel);
 		{

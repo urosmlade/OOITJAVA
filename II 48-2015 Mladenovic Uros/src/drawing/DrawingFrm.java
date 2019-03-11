@@ -2,22 +2,16 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
-
 import javax.swing.JButton;
 import javax.swing.GroupLayout;
 import javax.swing.GroupLayout.Alignment;
-
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.util.Iterator;
-import javax.swing.JLabel;
-import javax.swing.LayoutStyle.ComponentPlacement;
 
 public class DrawingFrm extends JFrame {
 
@@ -37,8 +31,6 @@ public class DrawingFrm extends JFrame {
 		});
 	}
 	
-	
-
 	public DrawingFrm() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 728, 471);
@@ -46,9 +38,7 @@ public class DrawingFrm extends JFrame {
 		contentPane.setBorder(new EmptyBorder(0, 0, 0, 0));
 		setContentPane(contentPane);
 		
-		
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
 		
 		pnl = new PnlDrawing();
 		pnl.setBorder(null);
@@ -101,7 +91,7 @@ public class DrawingFrm extends JFrame {
 			}
 		});
 		
-		JButton btnDonut = new JButton("Krofna");
+		JButton btnDonut = new JButton("Krug sa rupom");
 		btnDonut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 5;
@@ -157,9 +147,6 @@ public class DrawingFrm extends JFrame {
 				
 			}
 		});
-		
-			
-		
 	
 		GroupLayout gl_pnlLevo = new GroupLayout(pnlLevo);
 		gl_pnlLevo.setHorizontalGroup(
@@ -196,16 +183,8 @@ public class DrawingFrm extends JFrame {
 					.addComponent(btnModify)
 					.addGap(18)
 					.addComponent(btnDelete)
-					.addContainerGap(113, Short.MAX_VALUE))
+					.addContainerGap(88, Short.MAX_VALUE))
 		);
 		pnlLevo.setLayout(gl_pnlLevo);
-		
 	}
-
-
-
-	
 }
-
-
-

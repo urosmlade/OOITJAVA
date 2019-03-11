@@ -1,14 +1,11 @@
 package drawing;
-
 import java.awt.Graphics;
-
-import javax.swing.JTextField;
 
 public class Circle extends Shapes {
 	private Point center;
 	private int radius;
 	PnlDrawing pnl = new PnlDrawing();
-
+		
 	public Circle (Point center, int radius) {
 		this.center = center;
 		this.radius = radius;
@@ -17,29 +14,14 @@ public class Circle extends Shapes {
 	public Circle (Point center, int radius, boolean selected) {
 		this(center, radius);
 		setSelected(selected);
-}
-	
-	public Point getCenter() {
-		return center;
-	}
-	public void setCenter(Point center) {
-		this.center = center;
-	}
-	public int getRadius() {
-		return radius;
-	}
-	public void setRadius(int radius) {
-		this.radius = radius;
 	}
 	
-
 	@Override
 	public int compareTo(Object o) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 	
-
 	@Override
 	public boolean contains(int x, int y) {
 		return this.getCenter().distance(x, y) <= radius;
@@ -59,10 +41,6 @@ public class Circle extends Shapes {
 		}
 	}
 	
-	public String toString() {
-		return "Center= " + center + ", radius= " + radius + " " + isSelected(); 
-	}
-
 	@Override
 	public void dijalog() {
 		DrwCirDlg drwcirdlg = new DrwCirDlg();		
@@ -77,12 +55,26 @@ public class Circle extends Shapes {
 		}
 		drwcirdlg.setVisible(true);
 	}
-	
-	
 
 	@Override
 	public void move(int byX, int byY) {
-			center.move(byX, byY);
-		}
+		center.move(byX, byY);
+	}
+	
+	public Point getCenter() {
+		return center;
+	}
+	public void setCenter(Point center) {
+		this.center = center;
+	}
+	public int getRadius() {
+		return radius;
+	}
+	public void setRadius(int radius) {
+		this.radius = radius;
+	}
+	public String toString() {
+		return "Center= " + center + ", radius= " + radius + " " + isSelected(); 
 	}
 
+}

@@ -2,8 +2,6 @@ package drawing;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.awt.FlowLayout;
-
 import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JDialog;
@@ -63,10 +61,17 @@ public class DrwPoiDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtXCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -76,10 +81,17 @@ public class DrwPoiDlg extends JDialog {
 			@Override
 			public void keyTyped(KeyEvent e) {
 				char c = e.getKeyChar();
-				if (!((c >= '0') && (c <= '9') ||
-						(c == KeyEvent.VK_BACK_SPACE))) {
-					e.consume();
-					getToolkit().beep();
+				if(getTxtYCoord().getText().trim().isEmpty()) {
+					if (!((c >= '1') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+				}}else {
+					if (!((c >= '0') && (c <= '9') ||
+							(c == KeyEvent.VK_BACK_SPACE))) {
+						e.consume();
+						getToolkit().beep();
+					}
 				}
 			}
 		});
@@ -214,8 +226,6 @@ public class DrwPoiDlg extends JDialog {
 	public void setTxtYCoord(JTextField txtYCoord) {
 		this.txtYCoord = txtYCoord;
 	}
-
-
 
 	public int getXp() {
 		return xp;
