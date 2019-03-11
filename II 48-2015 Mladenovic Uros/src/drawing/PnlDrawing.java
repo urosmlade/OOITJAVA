@@ -101,8 +101,8 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		repaint();
 	}
 
-	public void paintComponent(Graphics g) {
-			super.paintComponent(g);
+	public void paint(Graphics g) {
+			super.paint(g);
 			
 			if(selecttb == false) {
 			switch (obj) {
@@ -165,4 +165,3 @@ public class PnlDrawing extends JPanel implements MouseListener{
 		}
 	}
 }
-
