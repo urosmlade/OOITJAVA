@@ -17,6 +17,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.util.Stack;
 import java.awt.event.ActionEvent;
@@ -25,7 +27,7 @@ public class StackFrm extends JFrame {
 
 	private JPanel contentPane;
 	DefaultListModel dlm = new DefaultListModel();
-	Stack stack = new Stack();
+	Stack<Rectangle> stack = new Stack<Rectangle>();
 	/**
 	 * Launch the application.
 	 */
@@ -52,7 +54,8 @@ public class StackFrm extends JFrame {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(new BorderLayout(0, 0));
-		
+		setTitle("II48/2015 Uros Mladenovic");
+
 		JPanel PnlCentar = new JPanel();
 		contentPane.add(PnlCentar, BorderLayout.CENTER);
 		
@@ -87,15 +90,17 @@ public class StackFrm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				StackDlg stackdlg = new StackDlg();
 				stackdlg.setVisible(true);
-				Rectangle rec = new Rectangle(new Point (Integer.parseInt(stackdlg.getTxtXKoord().getText()), (Integer.parseInt(stackdlg.getTxtYKoord().getText()))), 
-						Integer.parseInt(stackdlg.getTxtSirina().getText()), 
-						Integer.parseInt(stackdlg.getTxtVisina().getText()));
+				
 				
 				if(stackdlg.isOk == true) {
+					Rectangle rec = new Rectangle(new Point (Integer.parseInt(stackdlg.getTxtXKoord().getText()), (Integer.parseInt(stackdlg.getTxtYKoord().getText()))), 
+							Integer.parseInt(stackdlg.getTxtSirina().getText()), 
+							Integer.parseInt(stackdlg.getTxtVisina().getText()));
 					dlm.add(0,"X koordinata: " + rec.getUlp().getX() + " , Y koordinata: " + rec.getUlp().getY() + " , sirina: " + rec.getWidth() + " , visina: " + rec.getHeight());
+					stack.push(rec);
+
 				}
 				
-				stack.push(rec);
 				System.out.println(stack);
 			}
 		});
@@ -103,17 +108,26 @@ public class StackFrm extends JFrame {
 		JButton btnObrisi = new JButton("Obrisi");
 		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				StackDlg stackdlgobrisi = new StackDlg();
-				String[] split = dlm.firstElement().toString().split(" ");
-				stackdlgobrisi.getTxtXKoord().setText(split[2]);
-				stackdlgobrisi.getTxtYKoord().setText(split[6]);
-				stackdlgobrisi.getTxtSirina().setText(split[9]);
-				stackdlgobrisi.getTxtVisina().setText(split[12]);
-				stackdlgobrisi.setVisible(true);
-				stack.pop();
-				System.out.println(stack);
-				dlm.removeElementAt(0);
-				
+				if(dlm.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nema objekata za brisanje, lista je prazna!", "Greska", JOptionPane.ERROR_MESSAGE);
+				}else {				
+					StackDlg stackdlgobrisi = new StackDlg();
+					String[] split = dlm.firstElement().toString().split(" ");
+					stackdlgobrisi.getTxtXKoord().setText(split[2]);
+					stackdlgobrisi.getTxtYKoord().setText(split[6]);
+					stackdlgobrisi.getTxtSirina().setText(split[9]);
+					stackdlgobrisi.getTxtVisina().setText(split[12]);
+					stackdlgobrisi.getTxtXKoord().setEditable(false);
+					stackdlgobrisi.getTxtYKoord().setEditable(false);
+					stackdlgobrisi.getTxtSirina().setEditable(false);
+					stackdlgobrisi.getTxtVisina().setEditable(false);
+					stackdlgobrisi.setVisible(true);
+					if(stackdlgobrisi.brisi == true) {
+						stack.pop();
+						System.out.println(stack);
+						dlm.removeElementAt(0);
+					}
+				}
 			}
 		});
 		GroupLayout gl_PnlDole = new GroupLayout(PnlDole);

@@ -38,7 +38,7 @@ public class DrwLinDlg extends JDialog {
 	private JButton btnPromenaBoja;
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
-	
+	boolean bojab;
 	
 	/**
 	 * Launch the application.
@@ -153,6 +153,7 @@ public class DrwLinDlg extends JDialog {
 		btnPromenaBoja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+				bojab = true;
 			}
 		});
 		GroupLayout gl_contentPanel = new GroupLayout(contentPanel);
@@ -233,7 +234,10 @@ public class DrwLinDlg extends JDialog {
 									if(shapes instanceof Line) {
 										((Line) shapes).setStart(new Point(sx,sy));
 										((Line) shapes).setEnd(new Point(ex, ey));
-										shapes.setBoja(boja);
+										if(bojab == true) {
+											shapes.setBoja(boja);
+											bojab = false;
+										}
 									}
 									
 								}

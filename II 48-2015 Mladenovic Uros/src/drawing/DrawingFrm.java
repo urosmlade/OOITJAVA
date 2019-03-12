@@ -33,6 +33,7 @@ public class DrawingFrm extends JFrame {
 	}
 	
 	public DrawingFrm() {
+		setTitle("II48/2015 Uros Mladenovic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 728, 429);
 		contentPane = new JPanel();
@@ -65,6 +66,9 @@ public class DrawingFrm extends JFrame {
 		btnPoint.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 1;
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					shapes.setSelected(false);
+				}
 			
 			}
 		});
@@ -73,7 +77,9 @@ public class DrawingFrm extends JFrame {
 		btnLine.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 2;
-				
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					shapes.setSelected(false);
+				}
 			}
 		});
 		
@@ -81,7 +87,9 @@ public class DrawingFrm extends JFrame {
 		btnRectangle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 3;
-				
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					shapes.setSelected(false);
+				}
 			}
 		});
 		
@@ -89,7 +97,9 @@ public class DrawingFrm extends JFrame {
 		btnCircle.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 4;
-				
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					shapes.setSelected(false);
+				}
 			}
 		});
 		
@@ -97,7 +107,9 @@ public class DrawingFrm extends JFrame {
 		btnDonut.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				PnlDrawing.obj = 5;
-				
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					shapes.setSelected(false);
+				}
 			}
 		});	
 		
@@ -105,8 +117,12 @@ public class DrawingFrm extends JFrame {
 		JButton btnSelect = new JButton("Selektovanje");
 		btnSelect.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				PnlDrawing.obj = 6;
-				
+				if(PnlDrawing.shapesarr.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nema objekata za selektovanje!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}else {
+					PnlDrawing.obj = 6;
+				}
 			}
 		});
 		
@@ -114,38 +130,43 @@ public class DrawingFrm extends JFrame {
 		JButton btnModify = new JButton("Modifikacija");
 		btnModify.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {	
-						
+				if(PnlDrawing.shapesarr.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nema objekata za modifikacuju!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+					return;
+				}
+				
 				for (Shapes shapes : PnlDrawing.shapesarr) {
 					if(shapes.isSelected()) {
-						shapes.dijalog();
+							shapes.dijalog();						
+						return;
 					}
-				}
 
+				}
+				JOptionPane.showMessageDialog(null, "Pre modifikovanja morate selektovati objekat!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
+				
 			}
+			
 		});
 		
 		JButton btnDelete = new JButton("Brisanje");
 		btnDelete.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				
 				if(PnlDrawing.shapesarr.isEmpty()) {
-					JOptionPane.showMessageDialog(null, "Nema oblika za brisanje!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Nema objekata za brisanje!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
 					return;
 				}
-				Iterator<Shapes> it = PnlDrawing.shapesarr.iterator();
-				while(it.hasNext()) {
-					Shapes s = it.next();
-					if(s.isSelected()) {
-						int odgovor = JOptionPane.showConfirmDialog(null, "Da li ste sigurni da želite da izbrišete selektovani oblik?", "Upozorenje!", JOptionPane.YES_NO_OPTION);
-						if(odgovor == 0)
-							PnlDrawing.shapesarr.remove(s);
-							pnl.repaint();
+				
+				for (Shapes shapes : PnlDrawing.shapesarr) {
+					if(shapes.isSelected()) {
+						int odgovor = JOptionPane.showConfirmDialog(null, "Da li zelite da izbrisete selektovani objekat?","Upozorenje", JOptionPane.YES_NO_OPTION);
+						if(odgovor == 0) {
+							PnlDrawing.shapesarr.remove(shapes);	
+						}
 						return;
 					}
+
 				}
-				JOptionPane.showMessageDialog(null, "Morate selektovati oblik da bi ste ga obrisali!", "Obaveštenje", JOptionPane.INFORMATION_MESSAGE);
-				return;
-			
+				JOptionPane.showMessageDialog(null, "Pre brisanja morate selektovati objekat!", "Obavestenje", JOptionPane.INFORMATION_MESSAGE);
 				
 			}
 		});

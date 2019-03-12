@@ -1,4 +1,5 @@
 package drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Rectangle extends Shapes {
@@ -43,6 +44,7 @@ public class Rectangle extends Shapes {
 		g.setColor(getBoja());
 		g.drawRect(this.getUlp().getX(), this.getUlp().getY(), this.getWidth(), this.getHeight());
 		if(isSelected() == true) {
+			g.setColor(Color.BLACK);
 			g.drawRect(this.getUlp().getX() - 3, this.getUlp().getY() - 3, 6, 6);
 			g.drawRect(this.getUlp().getX() - 3 + width, this.getUlp().getY() - 3, 6, 6);
 			g.drawRect(this.getUlp().getX() - 3, this.getUlp().getY() - 3 + height, 6, 6);

@@ -38,6 +38,7 @@ public class DrwDonDlg extends JDialog {
 	private JButton btnPromenaBojeKruga;
 	private boolean bojab;
 	private boolean bojafillb;
+	private Color malikrug = Color.WHITE;
 	
 	/**
 	 * Launch the application.
@@ -230,6 +231,7 @@ public class DrwDonDlg extends JDialog {
 										}
 										if(isBojafillb()== true) {
 											shapes.setBojafill(bojaPovrsine);
+											
 											setBojafillb(false);
 										}
 										if(shapes instanceof Donut) {
@@ -380,5 +382,15 @@ public class DrwDonDlg extends JDialog {
 	public void setBojafillb(boolean bojafillb) {
 		this.bojafillb = bojafillb;
 	}
+
+	public Color getMalikrug() {
+		return malikrug;
+	}
+
+	public void setMalikrug(Color malikrug) {
+		this.malikrug = malikrug;
+	}
+
+	
 
 }

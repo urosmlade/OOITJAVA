@@ -1,4 +1,5 @@
 package drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Point extends Shapes {	
@@ -21,6 +22,7 @@ public class Point extends Shapes {
 		g.drawLine(this.getX()-2, this.getY(), this.getX()+2, this.getY());
 		g.drawLine(this.getX(), this.getY()-2, this.getX(), this.getY()+2);	
 		if(isSelected() == true) {
+			g.setColor(Color.BLACK);
 			g.drawRect(this.getX()-3, this.getY()-3, 6, 6);
 		}
 		

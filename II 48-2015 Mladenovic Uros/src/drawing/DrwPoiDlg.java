@@ -28,7 +28,7 @@ public class DrwPoiDlg extends JDialog {
 	private int yp;
 	private Color boja = Color.BLACK;
 	private Color bojaTacke = Color.BLACK;
-	
+	boolean bojab;
 	/**
 	 * Launch the application.
 	 */
@@ -101,6 +101,7 @@ public class DrwPoiDlg extends JDialog {
 		btnBoja.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				boja = JColorChooser.showDialog(null, "Panel boja", bojaTacke);
+				bojab = true;
 			}
 		});
 		GroupLayout gl_pnlCentar = new GroupLayout(pnlCentar);
@@ -154,7 +155,10 @@ public class DrwPoiDlg extends JDialog {
 							for (Shapes shapes : PnlDrawing.shapesarr) {
 								if(shapes.isSelected()) {
 									shapes.move(xp, yp);
-									shapes.setBoja(boja);
+									if(bojab == true) {
+										shapes.setBoja(boja);
+										bojab = false;
+									}
 								}
 							}
 							dispose();

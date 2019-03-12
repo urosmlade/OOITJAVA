@@ -1,4 +1,5 @@
 package drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Line extends Shapes {
@@ -41,6 +42,7 @@ public class Line extends Shapes {
 		g.setColor(getBoja());
 		g.drawLine(this.getStart().getX(), this.getStart().getY(), this.getEnd().getX(), this.getEnd().getY());
 		if(isSelected() == true) {
+			g.setColor(Color.BLACK);
 			g.drawRect(this.getStart().getX()-3, this.getStart().getY()-3, 6, 6);
 			g.drawRect(this.getEnd().getX()-3, this.getEnd().getY()-3, 6, 6);
 			g.drawRect(this.middleOfLine().getX()-3, this.middleOfLine().getY()-3, 6, 6);

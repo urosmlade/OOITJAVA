@@ -1,6 +1,7 @@
 package drawing;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.geom.Area;
 
 public class Donut extends Circle{
 	private int innerRadius;
@@ -25,25 +26,24 @@ public class Donut extends Circle{
 	@Override
 	public void draw(Graphics g) {
 		g.setColor(getBoja());
-		super.draw(g);
 		g.drawOval(this.getCenter().getX() - this.getInnerRadius(), this.getCenter().getY() - this.getInnerRadius(), this.getInnerRadius()*2, this.getInnerRadius()*2);
+		super.draw(g);
 	}
 	
 	@Override
 	public void boji(Graphics g) {
 		// TODO Auto-generated method stub
-		g.setColor(getBojafill());
 		super.boji(g);
 		g.setColor(getBoja());
 		g.drawOval(this.getCenter().getX() - this.getInnerRadius(), this.getCenter().getY() - this.getInnerRadius(), this.getInnerRadius()*2, this.getInnerRadius()*2);
 		g.setColor(Color.WHITE);
-		g.fillOval(this.getCenter().getX()+1 - this.getInnerRadius(), this.getCenter().getY()+1 - this.getInnerRadius(), this.getInnerRadius()*2-2, this.getInnerRadius()*2-2);
-	}
+		g.fillOval(this.getCenter().getX() - this.getInnerRadius(), this.getCenter().getY() - this.getInnerRadius(), this.getInnerRadius()*2, this.getInnerRadius()*2);
+	}	
 	
 	@Override
 	public void dijalog() {
 		DrwDonDlg drwdondlg = new DrwDonDlg();
-		for (Shapes shapes: pnl.shapesarr) {
+		for (Shapes shapes: PnlDrawing.shapesarr) {
 			if(shapes.isSelected()) {
 				String[] split = shapes.toString().split(" ");
 				drwdondlg.getTxtXCoord().setText(split[2]);

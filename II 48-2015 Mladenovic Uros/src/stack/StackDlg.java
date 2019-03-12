@@ -27,7 +27,7 @@ public class StackDlg extends JDialog {
 	private JTextField txtSirina;
 	private JTextField txtVisina;
 	boolean isOk;
-	
+	boolean brisi;
 	
 	/**
 	 * Launch the application.
@@ -141,12 +141,12 @@ public class StackDlg extends JDialog {
 							isOk = false;
 							setVisible(true);
 							getToolkit().beep();
-							JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena", "Greska", JOptionPane.ERROR_MESSAGE);
+							JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena!", "Greska", JOptionPane.ERROR_MESSAGE);
 						}else {
 							isOk = true;
+							brisi = true;
 							dispose();
 						}
-						
 					}
 				});
 				btnPotvrdi.setActionCommand("OK");
@@ -156,6 +156,7 @@ public class StackDlg extends JDialog {
 				btnPonisti = new JButton("Ponisti");
 				btnPonisti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						brisi = false;
 						dispose();
 					}
 				});
@@ -215,4 +216,5 @@ public class StackDlg extends JDialog {
 	public void setTxtVisina(JTextField txtVisina) {
 		this.txtVisina = txtVisina;
 	}
+
 }

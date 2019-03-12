@@ -10,7 +10,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 	int mx,my,x,y,sx,sy,ex,ey,radius,dr,dir,click = 1,width,height;
 	static int obj = 0; 
 	boolean starttrue,endtrue,rectrue,cirtrue,dontrue,pointtrue;	
-	static boolean selecttb;
 	static ArrayList <Shapes> shapesarr = new ArrayList <Shapes>();
 	
 	public PnlDrawing() {
@@ -21,7 +20,6 @@ public class PnlDrawing extends JPanel implements MouseListener{
 	public void mouseClicked(java.awt.event.MouseEvent e) {
 		mx = e.getX();
 		my = e.getY();	
-		if(selecttb == false) {
 			switch (obj) {
 			case 1:
 				pointtrue = true;
@@ -92,7 +90,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				Collections.reverse(shapesarr);
 	            for (Shapes shapes : shapesarr) {
 	                shapes.setSelected(false);
-	                if (!matchFound) {
+	                if (matchFound == false) {
 	                    if(shapes.contains(mx, my)) {         
 	                        shapes.setSelected(true);
 	                        matchFound = true;
@@ -100,20 +98,21 @@ public class PnlDrawing extends JPanel implements MouseListener{
 	                }
 	            }
 				Collections.reverse(shapesarr);
+				System.out.println(shapesarr);
 				break;
-			}
+			
 		}
 		//repaint(); ovde je bio ranije pa je premesten na kraj paint metode
 	}
 
 	public void paint(Graphics g) {
 			super.paint(g);
-			if(selecttb == false) {
 			switch (obj) {
 			case 1:
 				if(pointtrue == true) {
 					Point p = new Point(mx,my,false);
 					shapesarr.add(p);
+					System.out.println(shapesarr);
 					pointtrue = false;
 				}
 				break;
@@ -121,6 +120,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				if(starttrue == true && endtrue== true) {
 					Line l = new Line(new Point(sx, sy), new Point(ex, ey), false);
 					shapesarr.add(l);
+					System.out.println(shapesarr);
 					starttrue = false;
 					endtrue = false;
 				}
@@ -129,6 +129,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				if(rectrue == true) {
 					Rectangle r = new Rectangle(new Point(mx,my),width,height,false);					
 					shapesarr.add(r);
+					System.out.println(shapesarr);
 					rectrue = false;
 				}
 				break;
@@ -136,6 +137,7 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				if(cirtrue == true) {
 					Circle c = new Circle(new Point(mx,my), radius, false);
 					shapesarr.add(c);
+					System.out.println(shapesarr);
 					cirtrue = false;
 				}
 				break;
@@ -143,14 +145,15 @@ public class PnlDrawing extends JPanel implements MouseListener{
 				if(dontrue == true) {
 					Donut d = new Donut(new Point(mx,my), dr, dir, false);
 					shapesarr.add(d);
+					System.out.println(shapesarr);
 					dontrue = false;
 				}
 				break;
 			}
-		}
+	
 			for (Shapes shapes : shapesarr) {
-				shapes.draw(g);
 				shapes.boji(g);
+				shapes.draw(g);
 			}
 			repaint();
 	}

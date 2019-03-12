@@ -1,4 +1,5 @@
 package drawing;
+import java.awt.Color;
 import java.awt.Graphics;
 
 public class Circle extends Shapes {
@@ -33,6 +34,7 @@ public class Circle extends Shapes {
 		g.setColor(getBoja());
 		g.drawOval(this.getCenter().getX() - this.getRadius(), this.getCenter().getY() - this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 			if (isSelected()) {
+				g.setColor(Color.BLACK);
 				g.drawRect(this.getCenter().getX() + getRadius() - 3, this.getCenter().getY()-3, 6, 6);
 				g.drawRect(this.getCenter().getX() - getRadius() - 3, this.getCenter().getY()-3, 6, 6);
 				g.drawRect(this.getCenter().getX() - 3, this.getCenter().getY() + getRadius() -3, 6, 6);
@@ -41,11 +43,10 @@ public class Circle extends Shapes {
 		}
 	}
 	
-	
 	@Override
 	public void boji(Graphics g) {
 		g.setColor(getBojafill());
-		g.fillOval(this.getCenter().getX()+1 - this.getRadius(), this.getCenter().getY()+1 - this.getRadius(), this.getRadius()*2-2, this.getRadius()*2-2);
+		g.fillOval(this.getCenter().getX() - this.getRadius(), this.getCenter().getY() - this.getRadius(), this.getRadius()*2, this.getRadius()*2);
 			
 	}
 	

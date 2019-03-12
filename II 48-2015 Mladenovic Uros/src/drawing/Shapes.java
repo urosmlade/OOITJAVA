@@ -7,8 +7,9 @@ public abstract class Shapes implements Comparable, Moveable  {
 	
 	private boolean selected;
 	private Color boja = Color.BLACK;
-	private Color bojafill = Color.WHITE;
 	
+	private Color bojafill = Color.WHITE;
+	//private Color bojafill = new Color(0, 0, 0, 0);
 	DrawingFrm frm = new DrawingFrm();
 	
 	public Shapes() {
@@ -33,8 +34,6 @@ public abstract class Shapes implements Comparable, Moveable  {
 	}
 	
 	public abstract void dijalog();
-
-	
 	
 	public void setBoja(Color boja) {
 		this.boja = boja;
@@ -53,6 +52,7 @@ public abstract class Shapes implements Comparable, Moveable  {
 	public void setBojafill(Color bojafill) {
 		this.bojafill = bojafill;
 	}
+
 
 
 

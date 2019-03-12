@@ -17,6 +17,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import javax.swing.JScrollPane;
 import javax.swing.JList;
+import javax.swing.JOptionPane;
+
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -47,6 +49,7 @@ public class SortFrm extends JFrame {
 	 * Create the frame.
 	 */
 	public SortFrm() {
+		setTitle("II48/2015 Uros Mladenovic");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 380, 384);
 		contentPane = new JPanel();
@@ -88,40 +91,48 @@ public class SortFrm extends JFrame {
 			public void actionPerformed(ActionEvent e) {
 				SortDlg sortdlg = new SortDlg();
 				sortdlg.setVisible(true);
-				Rectangle rec = new Rectangle(new Point (Integer.parseInt(sortdlg.getTxtXKoord().getText()), (Integer.parseInt(sortdlg.getTxtYKoord().getText()))), 
-						Integer.parseInt(sortdlg.getTxtSirina().getText()), 
-						Integer.parseInt(sortdlg.getTxtVisina().getText()));
 				
-				arrRect.add(rec);
-				Collections.sort(arrRect);
 
 				if(sortdlg.isOk == true) {
+					Rectangle rec = new Rectangle(new Point (Integer.parseInt(sortdlg.getTxtXKoord().getText()), (Integer.parseInt(sortdlg.getTxtYKoord().getText()))), 
+							Integer.parseInt(sortdlg.getTxtSirina().getText()), 
+							Integer.parseInt(sortdlg.getTxtVisina().getText()));
+					arrRect.add(rec);
+					Collections.sort(arrRect);
+					
 					dlm.add(arrRect.indexOf(rec),"X koordinata: " + rec.getUlp().getX() + 
 						      " , Y koordinata: " + rec.getUlp().getY() + 
 						      " , sirina: " + rec.getWidth() + 
 						      " , visina: " + rec.getHeight());
+					
 				}
-				System.out.println(rec);
-				System.out.println(arrRect);
-				
-				
 			}
 		});
 		
 		JButton btnObrisi = new JButton("Obrisi");
 		btnObrisi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				SortDlg sortDlgObrisi = new SortDlg();
-				String[] split = dlm.firstElement().toString().split(" ");
-				sortDlgObrisi.getTxtXKoord().setText(split[2]);
-				sortDlgObrisi.getTxtYKoord().setText(split[6]);
-				sortDlgObrisi.getTxtSirina().setText(split[9]);
-				sortDlgObrisi.getTxtVisina().setText(split[12]);
-				sortDlgObrisi.setVisible(true);
-				dlm.removeElementAt(0);
-				arrRect.remove(0);
-				System.out.println(arrRect);
-
+				if(dlm.isEmpty()) {
+					JOptionPane.showMessageDialog(null, "Nema objekata za brisanje, lista je prazna!", "Greska", JOptionPane.ERROR_MESSAGE);
+				}else {
+					SortDlg sortDlgObrisi = new SortDlg();
+					String[] split = dlm.firstElement().toString().split(" ");
+					sortDlgObrisi.getTxtXKoord().setText(split[2]);
+					sortDlgObrisi.getTxtYKoord().setText(split[6]);
+					sortDlgObrisi.getTxtSirina().setText(split[9]);
+					sortDlgObrisi.getTxtVisina().setText(split[12]);
+					sortDlgObrisi.getTxtXKoord().setEditable(false);
+					sortDlgObrisi.getTxtYKoord().setEditable(false);
+					sortDlgObrisi.getTxtSirina().setEditable(false);
+					sortDlgObrisi.getTxtVisina().setEditable(false);
+					
+					sortDlgObrisi.setVisible(true);
+					if(sortDlgObrisi.brisi == true) {
+						dlm.removeElementAt(0);
+						arrRect.remove(0);
+						System.out.println(arrRect);
+					}
+				}
 			}
 		});
 		GroupLayout gl_PnlDole = new GroupLayout(PnlDole);

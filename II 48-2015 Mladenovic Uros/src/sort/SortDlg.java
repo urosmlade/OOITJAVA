@@ -27,7 +27,7 @@ public class SortDlg extends JDialog {
 	private JTextField txtSirina;
 	private JTextField txtVisina;
 	boolean isOk;
-	
+	boolean brisi;
 	
 	/**
 	 * Launch the application.
@@ -144,6 +144,7 @@ public class SortDlg extends JDialog {
 							JOptionPane.showMessageDialog(null, "Sva polja moraju biti popunjena", "Greska", JOptionPane.ERROR_MESSAGE);
 						}else {
 							isOk = true;
+							brisi = true;
 							dispose();
 						}
 						
@@ -156,6 +157,7 @@ public class SortDlg extends JDialog {
 				btnPonisti = new JButton("Ponisti");
 				btnPonisti.addActionListener(new ActionListener() {
 					public void actionPerformed(ActionEvent arg0) {
+						brisi = false;
 						dispose();
 					}
 				});
